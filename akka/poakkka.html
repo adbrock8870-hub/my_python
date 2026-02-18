@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Special Surprise 💖</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* PAGE STYLE */
+.page {
+    display: none;
+    padding: 40px;
+    min-height: 100vh;
+}
+
+.active {
+    display: block;
+}
+
+/* PAGE 1 BACKGROUND */
+#page1 {
+    background: linear-gradient(to bottom right, #ffd6e8, #e6f7ff);
+}
+
+/* PAGE 2 WHITE BACKGROUND */
+#page2 {
+    background: white;
+    position: relative;
+    overflow: hidden;
+}
+
+/* BUTTON */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    background: #ff66b2;
+    color: white;
+    cursor: pointer;
+}
+
+/* 💖 CUTE PHOTO FRAME */
+.photo-frame {
+    display: inline-block;
+    padding: 20px;
+    background: white;
+    border: 8px solid #ff99cc;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    position: relative;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.photo-frame:hover {
+    transform: scale(1.05);
+}
+
+.photo-frame img {
+    width: 300px;
+    height: 250px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+/* Corner Hearts */
+.corner {
+    position: absolute;
+    font-size: 22px;
+}
+
+.heart1 { top: -15px; left: -15px; }
+.heart2 { top: -15px; right: -15px; }
+.heart3 { bottom: -15px; left: -15px; }
+.heart4 { bottom: -15px; right: -15px; }
+
+/* PAGE 2 FLYING HEARTS */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 24px;
+    color: pink;
+    animation: floatUp 6s linear forwards;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-800px); opacity: 0; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+    <h1>Someone Special is Coming Soon 👶💖</h1>
+    <p>Touch the picture to change it ✨</p>
+
+    <div class="photo-frame">
+        <span class="corner heart1">💗</span>
+        <span class="corner heart2">💗</span>
+        <span class="corner heart3">💗</span>
+        <span class="corner heart4">💗</span>
+
+        <img id="slideshow" src="ad.jpg" onclick="changeImage()">
+    </div>
+
+    <br>
+    <button onclick="goToPage2()">Next Surprise 💕</button>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+    <h1 style="color:#ff66b2;">You’re Going to Be an Amazing Mom 💖</h1>
+
+    <div style="margin-top:30px; font-size:20px; max-width:600px; margin-left:auto; margin-right:auto;">
+        <p>
+        My dearest sister,<br><br>
+        This little miracle is so lucky to have you.  
+        You will be the most loving and caring mom.  
+        I am so proud of you and I can't wait  
+        to meet our tiny star. ✨👶<br><br>
+        poosa kaa 💕
+        </p>
+    </div>
+
+    <button onclick="goToPage1()">Back</button>
+</div>
+
+<!-- Hidden Music -->
+<audio id="music">
+    <source src="ss.mp3">
+</audio>
+
+<script>
+
+/* IMAGE LIST */
+var images = [
+    "ad.jpeg",
+    "ad4.jpeg",
+    "ad3.jpeg",
+    "ad2.jpeg",
+    "ad5.jpeg"
+];
+
+var index = 0;
+
+/* CLICK TO CHANGE IMAGE */
+function changeImage() {
+    index = (index + 1) % images.length;
+    document.getElementById("slideshow").src = images[index];
+}
+
+/* PAGE SWITCH */
+function goToPage2() {
+    document.getElementById("page1").classList.remove("active");
+    document.getElementById("page2").classList.add("active");
+
+    document.getElementById("music").play();
+    startHearts();
+}
+
+function goToPage1() {
+    document.getElementById("page2").classList.remove("active");
+    document.getElementById("page1").classList.add("active");
+
+    var music = document.getElementById("music");
+    music.pause();
+    music.currentTime = 0;
+}
+
+/* FLYING HEARTS */
+function startHearts() {
+    setInterval(function() {
+        var heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💗";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = (20 + Math.random() * 20) + "px";
+
+        document.getElementById("page2").appendChild(heart);
+
+        setTimeout(function() {
+            heart.remove();
+        }, 6000);
+
+    }, 500);
+}
+
+</script>
+
+</body>
+</html>
