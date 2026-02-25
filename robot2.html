@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Advanced Robot Toggle</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    background:radial-gradient(circle at center, #111 0%, #000 80%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, sans-serif;
+    overflow:hidden;
+}
+
+/* Animated background glow */
+body::before{
+    content:"";
+    position:absolute;
+    width:400px;
+    height:400px;
+    background:#00aaff;
+    filter:blur(150px);
+    opacity:0;
+    transition:1s;
+}
+
+/* Glass container */
+.panel{
+    width:500px;
+    height:300px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
+    position:relative;
+    overflow:hidden;
+    padding:40px;
+    box-shadow:0 0 30px rgba(0,0,0,0.8);
+}
+
+/* Robot */
+.robot{
+    width:130px;
+    height:130px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    top:80px;
+    left:40px;
+    transition:all 1s cubic-bezier(.68,-0.55,.27,1.55);
+    box-shadow:0 0 25px rgba(255,255,255,0.7);
+}
+
+/* Robot face */
+.robot::before,
+.robot::after{
+    content:"";
+    width:20px;
+    height:20px;
+    background:black;
+    border-radius:50%;
+    position:absolute;
+    top:45px;
+}
+
+.robot::before{ left:35px; }
+.robot::after{ right:35px; }
+
+/* Mouth */
+.mouth{
+    width:40px;
+    height:10px;
+    background:black;
+    position:absolute;
+    bottom:40px;
+    left:45px;
+    border-radius:10px;
+}
+
+/* Toggle switch */
+.toggle{
+    position:absolute;
+    bottom:40px;
+    left:50%;
+    transform:translateX(-50%);
+    width:160px;
+    height:60px;
+    background:#222;
+    border-radius:50px;
+    cursor:pointer;
+    transition:0.5s;
+    box-shadow:0 0 15px rgba(255,255,255,0.1);
+}
+
+.switch{
+    width:55px;
+    height:55px;
+    background:white;
+    border-radius:50%;
+    position:absolute;
+    top:2.5px;
+    left:2.5px;
+    transition:0.8s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+/* ACTIVE STATE */
+.active .robot{
+    left:320px;
+    background:#00aaff;
+    box-shadow:0 0 60px #00aaff;
+}
+
+.active .switch{
+    left:102px;
+    background:#00aaff;
+}
+
+.active .toggle{
+    background:#00aaff33;
+}
+
+.active body::before{
+    opacity:0.4;
+}
+
+.status{
+    position:absolute;
+    top:20px;
+    right:30px;
+    color:white;
+    font-size:20px;
+    letter-spacing:2px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel" id="panel">
+
+    <div class="robot">
+        <div class="mouth"></div>
+    </div>
+
+    <div class="toggle" onclick="toggleRobot()">
+        <div class="switch"></div>
+    </div>
+
+    <div class="status" id="status">OFF</div>
+
+</div>
+
+<script>
+function toggleRobot(){
+    const panel = document.getElementById("panel");
+    const status = document.getElementById("status");
+
+    panel.classList.toggle("active");
+
+    if(panel.classList.contains("active")){
+        status.innerHTML = "ON";
+    } else {
+        status.innerHTML = "OFF";
+    }
+}
+</script>
+
+</body>
+</html>

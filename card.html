@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>3 Animated Board Cards</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0d0d0d;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Container */
+.container{
+    display:flex;
+    gap:40px;
+}
+
+/* Card Base */
+.card{
+    width:280px;
+    height:360px;
+    border-radius:20px;
+    padding:25px;
+    color:white;
+    position:relative;
+    overflow:hidden;
+    transition:0.5s;
+    box-shadow:0 0 25px rgba(0,0,0,0.6);
+}
+
+/* Hover Effect */
+.card:hover{
+    transform:translateY(-15px) scale(1.05);
+}
+
+/* Title */
+.card h2{
+    text-align:center;
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+/* List */
+.card ul{
+    list-style:none;
+    line-height:30px;
+    padding-left:10px;
+}
+
+/* Special Hue Rotate Animation */
+@keyframes hue-rotate-special{
+    0%{ filter:hue-rotate(0deg); }
+    100%{ filter:hue-rotate(360deg); }
+}
+
+/* First Card */
+.card1{
+    background:linear-gradient(135deg,#00f2ff,#ff00c8);
+    animation: hue-rotate-special 7s linear infinite reverse;
+}
+
+/* Second Card */
+.card2{
+    background:linear-gradient(135deg,#00ff88,#0088ff);
+    animation: hue-rotate-special 9s linear infinite;
+}
+
+/* Third Card */
+.card3{
+    background:linear-gradient(135deg,#ff8800,#ff0088);
+    animation: hue-rotate-special 7s linear infinite alternate-reverse;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- First Card -->
+    <div class="card card1">
+        <h2>AD</h2>
+        <ul>
+            <li>• Frontend Developer</li>
+            <li>• Backend Developer</li>
+            <li>• Full Stack Developer</li>
+            <li>• Mobile App Developer</li>
+            <li>• Game Developer</li>
+        </ul>
+    </div>
+
+    <!-- Second Card -->
+    <div class="card card2">
+        <h2>Kishore</h2>
+        <ul>
+            <li>• Magnus Carlsen</li>
+            <li>• Viswanathan Anand</li>
+            <li>• Garry Kasparov</li>
+            <li>• Hikaru Nakamura</li>
+            <li>• Bobby Fischer</li>
+            <li>• gukesh</li>
+        </ul>
+    </div>
+
+    <!-- Third Card -->
+    <div class="card card3">
+        <h2>Sowro</h2>
+        <ul>
+            <li>• Video Editor</li>
+            <li>• Film Editor</li>
+            <li>• Photo Editor</li>
+            <li>• Content Editor</li>
+            <li>• Sound Editor</li>
+        </ul>
+    </div>
+
+</div>
+
+</body>
+</html>
